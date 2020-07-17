@@ -19,9 +19,10 @@ var commentRoutes = require('./routes/comments');
 var campgroundRoutes = require('./routes/campgrounds');
 var indexRoutes = require('./routes/index'); //Auth routes
 //Connect to db
+// mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose
-	.connect('mongodb+srv://YelpCamp:yelpcamp123$@cluster0-ejvc6.mongodb.net/yelp_camp?retryWrites=true&w=majority', {
+	.connect('process.env.DATABASEURL', {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useCreateIndex: true
