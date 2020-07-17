@@ -20,9 +20,9 @@ var campgroundRoutes = require('./routes/campgrounds');
 var indexRoutes = require('./routes/index'); //Auth routes
 //Connect to db
 // mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true, useUnifiedTopology: true });
-
+//mongodb+srv://YelpCamp:yelpcamp123$@cluster0-ejvc6.mongodb.net/yelp_camp?retryWrites=true&w=majority
 mongoose
-	.connect('process.env.DATABASEURL', {
+	.connect(process.env.DATABASEURL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useCreateIndex: true
