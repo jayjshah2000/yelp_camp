@@ -24,6 +24,12 @@
 				  <ul class="nav navbar-nav">
 					<li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
 				  </ul>
+				  <div class="nav navbar-nav">
+					<form action="/views/campgrounds/index.ejs" method="GET" class="navbar-form form-inline">
+						<input type="text" name="search" placeholder="Search Campgrounds..." class="form-control">
+						<input type="submit" value="Search" class="btn btn-default">
+					</form>
+				  </div>
 				  <ul class="nav navbar-nav navbar-right">
 					  <% if(!currentUser){ %>
 						  <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
