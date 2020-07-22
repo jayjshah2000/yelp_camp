@@ -22,7 +22,7 @@ var indexRoutes = require('./routes/index'); //Auth routes
 // mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true, useUnifiedTopology: true });
 //mongodb+srv://YelpCamp:yelpcamp123$@cluster0-ejvc6.mongodb.net/yelp_camp?retryWrites=true&w=majority
 mongoose
-	.connect('mongodb+srv://YelpCamp:yelpcamp123$@cluster0-ejvc6.mongodb.net/yelp_camp?retryWrites=true&w=majority', {
+	.connect(process.env.DATABASE_URL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useCreateIndex: true
