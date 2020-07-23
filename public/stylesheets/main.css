@@ -6,3 +6,7 @@
 .delete-form {
 	display: inline;
 }
+
+#navSearchForm input[type=text] {
+	width: 20em !important;
+}

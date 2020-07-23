@@ -25,7 +25,7 @@
 					<li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
 				  </ul>
 				  <div class="nav navbar-nav">
-					<form action="/views/campgrounds/index.ejs" method="GET" class="navbar-form form-inline">
+					<form action="/campgrounds" method="GET" class="navbar-form form-inline" id="navSearchForm">
 						<input type="text" name="search" placeholder="Search Campgrounds..." class="form-control">
 						<input type="submit" value="Search" class="btn btn-default">
 					</form>

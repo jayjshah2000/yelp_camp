@@ -6,13 +6,29 @@ var Comment = require('../models/comment');
 
 //All campgrounds
 router.get('/campgrounds', function(req, res) {
-	Campground.find({}, function(err, allCampgrounds) {
-		if (err) {
-			console.log(err);
-		} else {
-			res.render('campgrounds/index', { campground: allCampgrounds, page: 'campgrounds' });
-		}
-	});
+	var noMatch = null;
+	if (req.query.search) {
+		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+		// Get all campgrounds from DB
+		Campground.find({ name: regex }, function(err, allCampgrounds) {
+			if (err) {
+				console.log(err);
+			} else {
+				if (allCampgrounds.length < 1) {
+					noMatch = 'No campgrounds match that query, please try again.';
+				}
+				res.render('campgrounds/index', { campground: allCampgrounds, page: 'campgrounds', noMatch: noMatch });
+			}
+		});
+	} else {
+		Campground.find({}, function(err, allCampgrounds) {
+			if (err) {
+				console.log(err);
+			} else {
+				res.render('campgrounds/index', { campground: allCampgrounds, page: 'campgrounds', noMatch: noMatch });
+			}
+		});
+	}
 });
 
 //create new campground
@@ -94,5 +110,9 @@ router.delete('/campgrounds/:id', middleware.checkCampgroundOwner, function(req,
 		}
 	});
 });
+
+function escapeRegex(text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
 
 module.exports = router;
