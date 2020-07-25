@@ -30,13 +30,19 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', function(req, res) {
-	passport.authenticate('local')(req, res, function() {
-		// successRedirect: '/campgrounds',
-		// successFlash: 'Logged in successfully as ' + req.body.username,
-		// failureRedirect: '/login'
-		req.flash('success', 'Logged in successfully as ' + req.body.username);
-		res.redirect('/campgrounds');
-	});
+	passport.authenticate('local', {
+		successRedirect: '/campgrounds',
+		failureRedirect: '/login',
+		failureFlash: true,
+		successFlash: 'Successfully logged in as ' + req.body.username
+	})(req, res);
+	// passport.authenticate('local')(req, res, function() {
+	// 	// successRedirect: '/campgrounds',
+	// 	// successFlash: 'Logged in successfully as ' + req.body.username,
+	// 	// failureRedirect: '/login'
+	// 	req.flash('success', 'Logged in successfully as ' + req.body.username);
+	// 	res.redirect('/campgrounds');
+	// });
 });
 
 router.get('/logout', function(req, res) {
